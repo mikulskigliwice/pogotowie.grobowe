@@ -1,1 +1,151 @@
+ stroiki?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Tak. Na życzenie można zamówić nowe znicze oraz sztuczne stroiki i wiązanki
+                zgodnie z cennikiem podanym na stronie.
+              </div>
+            </div>
+          </div>
 
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" type="button">
+              <span>Czy opłata jest pobierana z góry?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Nie. <strong>Opłata realizowana jest po wykonaniu usługi</strong> i po wysłaniu
+                zdjęć potwierdzających efekt końcowy na maila.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" type="button">
+              <span>Czy czyścisz profesjonalnie lastryko?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Nie. Nagrobki lastryko są wyłącznie <strong>myte</strong>. Profesjonalne czyszczenie,
+                renowacja i szlifowanie to osobna usługa spoza tej oferty, a takie prace
+                rynkowo zaczynają się zwykle od około <strong>500 zł</strong>.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" data-reveal>
+            <button class="faq-question" type="button">
+              <span>Czy można kontaktować się telefonicznie?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Nie. <strong>Wszelkie informacje kontaktowe i ustalenia odbywają się tylko
+                i wyłącznie mailowo</strong> pod adresem podanym na stronie.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div class="section-kicker">Kontakt</div>
+          <h2>Skontaktuj się mailowo</h2>
+          <p>
+            W sprawie wyceny, ustalenia szczegółów usługi, zniczy, stroików i terminu
+            realizacji proszę o kontakt wyłącznie mailowy.
+          </p>
+        </div>
+
+        <div class="card contact-card" data-reveal>
+          <div class="info-icon">📩</div>
+          <h3>Adres e-mail</h3>
+
+          <a
+            class="email-box"
+            href="mailto:pogotowie.grobowe@gmail.com?subject=Zapytanie%20o%20opiek%C4%99%20nad%20grobem"
+          >
+            <span>pogotowie.grobowe@gmail.com</span>
+          </a>
+
+          <p class="contact-note">
+            Po wykonaniu usługi wysyłane są zdjęcia <strong>przed i po</strong>, a płatność
+            realizowana jest dopiero po zakończeniu zlecenia i przesłaniu dokumentacji zdjęciowej.
+          </p>
+
+          <div class="notice">
+            <strong>Kontakt tylko przez maila:</strong> pogotowie.grobowe@gmail.com
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>
+        <strong>Pogotowie Grobowe • Śląsk</strong><br />
+        <span>Mycie grobów, opieka nad grobami, zdjęcia przed i po usłudze.</span>
+      </div>
+
+      <div>
+        <span>Kontakt wyłącznie mailowy:</span><br />
+        <a href="mailto:pogotowie.grobowe@gmail.com">pogotowie.grobowe@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById("scrollProgress");
+
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progress.style.width = percent + "%";
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress);
+
+    const revealElements = document.querySelectorAll("[data-reveal]");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-question");
+      const answer = item.querySelector(".faq-answer");
+
+      button.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        faqItems.forEach((otherItem) => {
+          otherItem.classList.remove("active");
+          otherItem.querySelector(".faq-answer").style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          item.classList.add("active");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
